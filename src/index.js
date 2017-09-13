@@ -4,5 +4,9 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render( <App
+                    cat={5}
+                    txt="esto es un texto"
+                    proppapa="lkdghihdeg"
+                /> , document.getElementById('root'));
 registerServiceWorker();
