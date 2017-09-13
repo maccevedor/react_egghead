@@ -1,20 +1,17 @@
 //import React, {Component} from 'react';
 import React from 'react';
 
-
 class App extends React.Component{
 
   constructor(){
     super();
+
     this.state = {
-      txt: 'thi',
-      cat: 0
+      currentEvent: '___'
     }
+    this.update= this.update.bind(this)
     this.fnChange = this.fnChange.bind(this)
-
   }
-
-
 
   fnChange(){
     this.setState({
@@ -22,8 +19,8 @@ class App extends React.Component{
     })
   }
  update(e){
-   console.log(e.target);
-   this.setState({txt: e.target.value})
+   //this.setState({txt: e.target.value})
+   this.setState({currentEvent: e.type})
  }
   render(){
     return (
@@ -40,6 +37,15 @@ class App extends React.Component{
         </p>
         <Button> <Heart />React</Button>
         <Title text="123454784"/>
+        <textarea
+        onKeyPress = {this.update}
+        onCopy = {this.update}
+        onCut = {this.update}
+        onPaste = {this.update}
+        onKeyPress = {this.update}
+        cols="30" rows="10"
+        />
+        <h1>{this.state.currentEvent}</h1>
       </div>
     )
   }
