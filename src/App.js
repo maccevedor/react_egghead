@@ -7,31 +7,25 @@ class App extends React.Component{
   constructor(){
     super();
     this.state = {
-      txt: 'this is super',
+      txt: 'thi',
       cat: 0
     }
     this.fnChange = this.fnChange.bind(this)
 
   }
 
-  componentWillMount(){
-    { this.fnChange() }
-  }
 
 
   fnChange(){
     this.setState({
       valor: 20
     })
-    console.log(this.state.valor)
   }
  update(e){
    console.log(e.target);
    this.setState({txt: e.target.value})
  }
   render(){
-    let txt = this.props.txt
-
     return (
       <div>
         <input type="text" onChange={this.update.bind(this)}/>
@@ -45,6 +39,7 @@ class App extends React.Component{
           {this.props.proppapa}
         </p>
         <Button> <Heart />React</Button>
+        <Title text="123454784"/>
       </div>
     )
   }
@@ -70,6 +65,23 @@ const Button = (props) => <button>{props.children}</button>
 class Heart extends React.Component{
   render(){
     return <span>&hearts;</span>
+  }
+}
+
+const Title = (prop) => <h1>Title: {prop.text}</h1>
+
+Title.propTypes = {
+  //text: React.PropTypes.string.isRequired
+  text(prop, propName,component){
+
+    //console.log(prop.propName);
+
+      if(!(propName in prop)){
+        return new Error(`missing ${propName}`)
+      }
+      if(prop[propName].length<6){
+      return new Error(`${propName} was to short`)
+      }
   }
 }
 
