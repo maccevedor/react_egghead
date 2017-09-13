@@ -1,5 +1,6 @@
 //import React, {Component} from 'react';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 class App extends React.Component{
 
@@ -7,7 +8,8 @@ class App extends React.Component{
     super();
 
     this.state = {
-      currentEvent: '___'
+      currentEvent: '___',
+      a: ''
     }
     this.update= this.update.bind(this)
     this.fnChange = this.fnChange.bind(this)
@@ -18,9 +20,15 @@ class App extends React.Component{
       valor: 20
     })
   }
- update(e){
+ update(){
    //this.setState({txt: e.target.value})
-   this.setState({currentEvent: e.type})
+   //this.setState({currentEvent: e.type})
+   //this.setState({a: e.target.value
+   this.setState({
+     //a: ReactDOM.findDOMNode(this.a).value,
+     a: this.a.refs.input.value,
+     b: this.refs.b.value,
+   })
  }
   render(){
     return (
@@ -46,6 +54,12 @@ class App extends React.Component{
         cols="30" rows="10"
         />
         <h1>{this.state.currentEvent}</h1>
+        <Input ref={ component => this.a = component}
+        update={this.update.bind(this)}
+         />{this.state.a}
+        <input ref="b" type="text" onChange={this.update.bind(this)}/>{this.state.b}
+        <hr/>
+
       </div>
     )
   }
@@ -88,6 +102,12 @@ Title.propTypes = {
       if(prop[propName].length<6){
       return new Error(`${propName} was to short`)
       }
+  }
+}
+
+class Input extends React.Component{
+  render(){
+    return <div><input ref="input" type="text" onChange={this.props.update}/></div>
   }
 }
 
