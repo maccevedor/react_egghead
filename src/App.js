@@ -57,12 +57,12 @@ App.PropTypes = {
   cat: React.PropTypes.number.isRequired
 }
 
-App.defaultProps = {
-  txt: "defaul value"
-}
+
 
 const Widget = (propiedades) => {
+  return(
   <input type="text" onChange={propiedades.update}/>
+)
 }
 
 const Button = (props) => <button>{props.children}</button>
